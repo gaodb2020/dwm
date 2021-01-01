@@ -1,3 +1,5 @@
+#include <X11/XF86keysym.h>
+
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
@@ -74,12 +76,16 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *roficmd[]  = {"rofi", "-show", "drun"};
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+// /home/gdb/.dwm/scripts
+static const char *upvol[]   = { "/home/gdb/.dwm/scripts/vol-up.sh",  NULL };
+static const char *downvol[] = { "/home/gdb/.dwm/scripts/vol-down.sh",  NULL };
+static const char *mutevol[] = { "/home/gdb/.dwm/scripts/vol-toggle.sh",  NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-    { MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
+        { MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -127,6 +133,13 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+
+	{ 0,                   XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
+	{ 0,                   XF86XK_AudioMute,        spawn,          {.v = mutevol } },
+	{ 0,                   XF86XK_AudioRaiseVolume, spawn,          {.v = upvol   } },
+	{ MODKEY,              XK_bracketleft,          spawn,          {.v = downvol } },
+	{ MODKEY,              XK_backslash,            spawn,          {.v = mutevol } },
+	{ MODKEY,              XK_bracketright,         spawn,          {.v = upvol   } },
 };
 
 /* button definitions */
