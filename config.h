@@ -80,6 +80,7 @@ static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34
 static const char *upvol[]   = { "/home/gdb/.dwm/scripts/vol-up.sh",  NULL };
 static const char *downvol[] = { "/home/gdb/.dwm/scripts/vol-down.sh",  NULL };
 static const char *mutevol[] = { "/home/gdb/.dwm/scripts/vol-toggle.sh",  NULL };
+static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -140,6 +141,7 @@ static Key keys[] = {
 	{ MODKEY,              XK_bracketleft,          spawn,          {.v = downvol } },
 	{ MODKEY,              XK_backslash,            spawn,          {.v = mutevol } },
 	{ MODKEY,              XK_bracketright,         spawn,          {.v = upvol   } },
+	{ 0,                   XK_Print,                spawn,          {.v = screenshotcmd } },
 };
 
 /* button definitions */
